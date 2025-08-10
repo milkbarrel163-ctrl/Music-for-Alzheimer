@@ -1,0 +1,23 @@
+{
+  "session_settings": {
+    "tracks_per_session": 6,
+    "session_duration_minutes": 30,
+    "randomize_order": true,
+    "balance_conditions": true
+  },
+  "music_selection": {
+    "eras": [
+      "1930s",
+      "1940s",
+      "1950s",
+      "1960s",
+      "traditional"
+    ],
+    "preferred_instruments": [
+      "erhu",
+      "guqin",
+      "guzheng"
+    ],
+    "cultural_authenticity_threshold": 0.7
+  }
+}

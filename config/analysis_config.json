@@ -1,0 +1,11 @@
+{
+  "statistical_tests": {
+    "primary_test": "wilcoxon_signed_rank",
+    "effect_size": "cliffs_delta",
+    "alpha_level": 0.05
+  },
+  "visualization": {
+    "plot_style": "plotly",
+    "figure_format": "html"
+  }
+}
