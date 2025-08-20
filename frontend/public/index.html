@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="theme-color" content="#6B46C1" />
+
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="MusicAlzheimer - A therapeutic music application designed to support Alzheimer's patients through personalized music therapy, memory stimulation, and emotional well-being." />
+  <meta name="keywords" content="Alzheimer's therapy, music therapy, memory care, dementia support, therapeutic music, cognitive stimulation" />
+  <meta name="author" content="MusicAlzheimer Team" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://musicalzheimer.app/" />
+  <meta property="og:title" content="MusicAlzheimer - Therapeutic Music for Memory Care" />
+  <meta property="og:description" content="Supporting Alzheimer's patients through personalized music therapy and memory stimulation." />
+  <meta property="og:image" content="%PUBLIC_URL%/og-image.png" />
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://musicalzheimer.app/" />
+  <meta property="twitter:title" content="MusicAlzheimer - Therapeutic Music for Memory Care" />
+  <meta property="twitter:description" content="Supporting Alzheimer's patients through personalized music therapy and memory stimulation." />
+  <meta property="twitter:image" content="%PUBLIC_URL%/twitter-image.png" />
+
+  <!-- Favicon and App Icons -->
+  <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="%PUBLIC_URL%/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="%PUBLIC_URL%/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="%PUBLIC_URL%/favicon-16x16.png" />
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+
+  <!-- Preconnect to External Resources -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Title -->
+  <title>MusicAlzheimer - Therapeutic Music for Memory Care</title>
+
+  <!-- Inline Critical CSS for Initial Load -->
+  <style>
+    /* Initial loading styles to prevent flash of unstyled content */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      background-color: #f9fafb;
+      color: #111827;
+    }
+
+    #root {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Loading Screen Styles */
+    .loading-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, #6B46C1 0%, #9333EA 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      transition: opacity 0.5s ease-out;
+    }
+
+    .loading-screen.fade-out {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .loading-content {
+      text-align: center;
+      color: white;
+    }
+
+    .loading-logo {
+      font-size: 64px;
+      margin-bottom: 20px;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    .loading-title {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .loading-subtitle {
+      font-size: 16px;
+      opacity: 0.9;
+      margin-bottom: 40px;
+    }
+
+    .loading-spinner {
+      width: 50px;
+      height: 50px;
+      border: 4px solid rgba(255, 255, 255, 0.3);
+      border-top: 4px solid white;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Accessibility - Skip to Content Link */
+    .skip-to-content {
+      position: absolute;
+      top: -40px;
+      left: 0;
+      background: #6B46C1;
+      color: white;
+      padding: 8px;
+      text-decoration: none;
+      z-index: 100;
+      border-radius: 0 0 4px 0;
+    }
+
+    .skip-to-content:focus {
+      top: 0;
+    }
+
+    /* No JavaScript Warning */
+    .no-js-warning {
+      display: none;
+      padding: 20px;
+      background-color: #FEF2F2;
+      color: #991B1B;
+      text-align: center;
+      font-size: 16px;
+      border-bottom: 2px solid #DC2626;
+    }
+
+    .no-script .no-js-warning {
+      display: block;
+    }
+
+    /* Print Styles */
+    @media print {
+      .loading-screen {
+        display: none;
+      }
+    }
+
+    /* Reduced Motion */
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    /* Dark Mode Support */
+    @media (prefers-color-scheme: dark) {
+      body {
+        background-color: #1f2937;
+        color: #f9fafb;
+      }
+    }
+  </style>
+
+  <!-- PWA iOS Support -->
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="MusicAlzheimer" />
+
+  <!-- Microsoft Tiles -->
+  <meta name="msapplication-TileImage" content="%PUBLIC_URL%/ms-icon-144x144.png" />
+  <meta name="msapplication-TileColor" content="#6B46C1" />
+</head>
+<body>
+  <!-- No JavaScript Warning -->
+  <noscript>
+    <div class="no-js-warning">
+      <strong>JavaScript is required to run this application.</strong>
+      <br />
+      Please enable JavaScript in your browser settings to use MusicAlzheimer.
+    </div>
+  </noscript>
+
+  <!-- Skip to Content Link for Accessibility -->
+  <a href="#main-content" class="skip-to-content">Skip to main content</a>
+
+  <!-- Loading Screen (shown until React loads) -->
+  <div id="loading-screen" class="loading-screen">
+    <div class="loading-content">
+      <div class="loading-logo">🎵</div>
+      <h1 class="loading-title">MusicAlzheimer</h1>
+      <p class="loading-subtitle">Therapeutic Music for Memory Care</p>
+      <div class="loading-spinner"></div>
+    </div>
+  </div>
+
+  <!-- Root element where React app will mount -->
+  <div id="root"></div>
+
+  <!-- Loading Screen Script -->
+  <script>
+    // Hide loading screen when React app is ready
+    window.addEventListener('DOMContentLoaded', function() {
+      // Give React time to mount
+      setTimeout(function() {
+        const loadingScreen = document.getElementById('loading-screen');
+        if (loadingScreen) {
+          loadingScreen.classList.add('fade-out');
+          setTimeout(function() {
+            loadingScreen.style.display = 'none';
+          }, 500);
+        }
+      }, 1000);
+    });
+
+    // Error handling for older browsers
+    window.addEventListener('error', function(e) {
+      console.error('Application error:', e);
+      const root = document.getElementById('root');
+      if (root && !root.hasChildNodes()) {
+        root.innerHTML = `
+          <div style="padding: 40px; text-align: center; font-family: sans-serif;">
+            <h1 style="color: #DC2626; margin-bottom: 20px;">⚠️ Application Error</h1>
+            <p style="color: #6B7280; margin-bottom: 20px;">
+              We're sorry, but something went wrong while loading the application.
+            </p>
+            <p style="color: #6B7280;">
+              Please try refreshing the page or contact support if the problem persists.
+            </p>
+            <button onclick="location.reload()" style="
+              margin-top: 20px;
+              padding: 10px 20px;
+              background-color: #6B46C1;
+              color: white;
+              border: none;
+              border-radius: 6px;
+              cursor: pointer;
+              font-size: 16px;
+            ">
+              Refresh Page
+            </button>
+          </div>
+        `;
+      }
+    });
+
+    // Service Worker Registration Check
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function() {
+        navigator.serviceWorker.register('%PUBLIC_URL%/service-worker.js')
+          .then(function(registration) {
+            console.log('ServiceWorker registration successful:', registration.scope);
+          })
+          .catch(function(err) {
+            console.log('ServiceWorker registration failed:', err);
+          });
+      });
+    }
+
+    // Browser Compatibility Check
+    (function() {
+      var isIE = /*@cc_on!@*/false || !!document.documentMode;
+      if (isIE) {
+        document.getElementById('root').innerHTML = `
+          <div style="padding: 40px; text-align: center; font-family: sans-serif;">
+            <h1 style="color: #DC2626; margin-bottom: 20px;">Browser Not Supported</h1>
+            <p style="color: #6B7280;">
+              MusicAlzheimer requires a modern browser to function properly.
+              <br />
+              Please upgrade to the latest version of Chrome, Firefox, Safari, or Edge.
+            </p>
+          </div>
+        `;
+      }
+    })();
+  </script>
+
+  <!-- Google Analytics (replace GA_MEASUREMENT_ID with your actual ID) -->
+  <!--
+  <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'GA_MEASUREMENT_ID');
+  </script>
+  -->
+</body>
+</html>

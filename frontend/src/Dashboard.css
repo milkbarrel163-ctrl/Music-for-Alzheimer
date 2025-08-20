@@ -1,0 +1,822 @@
+/* Dashboard Container */
+.dashboard {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Dashboard Header */
+.dashboard-header {
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  color: white;
+  padding: var(--spacing-2xl) var(--spacing-xl);
+  border-radius: var(--radius-lg);
+  margin-bottom: var(--spacing-xl);
+  box-shadow: var(--shadow-lg);
+  position: relative;
+  overflow: hidden;
+}
+
+.dashboard-header::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -10%;
+  width: 300px;
+  height: 300px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+}
+
+.dashboard-title {
+  font-size: var(--font-3xl);
+  font-weight: 700;
+  margin-bottom: var(--spacing-md);
+  position: relative;
+  z-index: 1;
+}
+
+.dashboard-subtitle {
+  font-size: var(--font-lg);
+  opacity: 0.9;
+  position: relative;
+  z-index: 1;
+}
+
+/* Dashboard Grid */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: var(--spacing-xl);
+  margin-bottom: var(--spacing-xl);
+}
+
+/* Dashboard Card */
+.dashboard-card {
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-xl);
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-base);
+  position: relative;
+  overflow: hidden;
+}
+
+.dashboard-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+  border-color: var(--primary-color);
+}
+
+.dashboard-card.featured {
+  grid-column: span 2;
+}
+
+.dashboard-card.compact {
+  padding: var(--spacing-lg);
+}
+
+/* Card Header */
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--spacing-lg);
+  padding-bottom: var(--spacing-md);
+  border-bottom: 2px solid var(--border-color);
+}
+
+.card-title {
+  font-size: var(--font-xl);
+  font-weight: 600;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.card-icon {
+  font-size: var(--font-2xl);
+  color: var(--primary-color);
+}
+
+.card-actions {
+  display: flex;
+  gap: var(--spacing-sm);
+}
+
+/* Quick Stats */
+.quick-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-xl);
+}
+
+.stat-card {
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-lg);
+  text-align: center;
+  transition: all var(--transition-fast);
+}
+
+.stat-card:hover {
+  border-color: var(--primary-color);
+  transform: scale(1.02);
+}
+
+.stat-value {
+  font-size: var(--font-3xl);
+  font-weight: 700;
+  color: var(--primary-color);
+  margin-bottom: var(--spacing-xs);
+}
+
+.stat-label {
+  font-size: var(--font-sm);
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.stat-change {
+  font-size: var(--font-sm);
+  margin-top: var(--spacing-sm);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--radius-sm);
+  display: inline-block;
+}
+
+.stat-change.positive {
+  background-color: rgba(16, 185, 129, 0.1);
+  color: var(--success-color);
+}
+
+.stat-change.negative {
+  background-color: rgba(239, 68, 68, 0.1);
+  color: var(--error-color);
+}
+
+/* Music Selection */
+.music-selection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.category-tabs {
+  display: flex;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-sm);
+  background-color: var(--bg-tertiary);
+  border-radius: var(--radius-md);
+}
+
+.category-tab {
+  flex: 1;
+  padding: var(--spacing-sm) var(--spacing-md);
+  background-color: transparent;
+  border: none;
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.category-tab:hover {
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+}
+
+.category-tab.active {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.music-tracks {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.track-item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md);
+  background-color: var(--bg-secondary);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.track-item:hover {
+  background-color: var(--bg-tertiary);
+  transform: translateX(4px);
+}
+
+.track-item.selected {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.track-thumbnail {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-sm);
+  background-color: var(--bg-tertiary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-xl);
+}
+
+.track-item.selected .track-thumbnail {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.track-details {
+  flex: 1;
+}
+
+.track-name {
+  font-weight: 500;
+  margin-bottom: var(--spacing-xs);
+}
+
+.track-meta {
+  font-size: var(--font-sm);
+  color: var(--text-tertiary);
+}
+
+.track-item.selected .track-meta {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* Activity Feed */
+.activity-feed {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.activity-item {
+  display: flex;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md) 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.activity-item:last-child {
+  border-bottom: none;
+}
+
+.activity-time {
+  font-size: var(--font-sm);
+  color: var(--text-tertiary);
+  min-width: 60px;
+}
+
+.activity-content {
+  flex: 1;
+}
+
+.activity-type {
+  font-weight: 500;
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-xs);
+}
+
+.activity-description {
+  font-size: var(--font-sm);
+  color: var(--text-secondary);
+}
+
+.activity-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-full);
+  background-color: var(--bg-tertiary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-base);
+}
+
+/* Memory Response Section */
+.memory-response-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.response-prompt {
+  background-color: var(--bg-secondary);
+  padding: var(--spacing-lg);
+  border-radius: var(--radius-md);
+  border-left: 4px solid var(--primary-color);
+}
+
+.prompt-text {
+  font-size: var(--font-lg);
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-md);
+  font-style: italic;
+}
+
+.response-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-lg);
+}
+
+.response-btn {
+  padding: var(--spacing-md) var(--spacing-lg);
+  background-color: var(--bg-primary);
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.response-btn:hover {
+  border-color: var(--primary-color);
+  background-color: var(--bg-tertiary);
+  transform: scale(1.02);
+}
+
+.response-btn.selected {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  color: white;
+}
+
+/* Action Buttons */
+.action-buttons {
+  display: flex;
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-xl);
+  padding-top: var(--spacing-lg);
+  border-top: 1px solid var(--border-color);
+}
+
+.action-btn {
+  flex: 1;
+  padding: var(--spacing-md) var(--spacing-lg);
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  transition: all var(--transition-base);
+}
+
+.action-btn.primary {
+  background-color: var(--primary-color);
+  color: white;
+  box-shadow: var(--shadow-sm);
+}
+
+.action-btn.primary:hover {
+  background-color: var(--secondary-color);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.action-btn.secondary {
+  background-color: var(--bg-tertiary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+}
+
+.action-btn.secondary:hover {
+  background-color: var(--bg-secondary);
+  border-color: var(--primary-color);
+}
+
+/* Progress Indicator */
+.progress-indicator {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md);
+  background-color: var(--bg-secondary);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--spacing-lg);
+}
+
+.progress-bar-container {
+  flex: 1;
+  height: 8px;
+  background-color: var(--bg-tertiary);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+  border-radius: var(--radius-full);
+  transition: width var(--transition-slow);
+}
+
+.progress-label {
+  font-size: var(--font-sm);
+  color: var(--text-secondary);
+  min-width: 60px;
+  text-align: right;
+}
+
+/* Empty State */
+.empty-state {
+  text-align: center;
+  padding: var(--spacing-2xl);
+  color: var(--text-tertiary);
+}
+
+.empty-icon {
+  font-size: 64px;
+  margin-bottom: var(--spacing-lg);
+  opacity: 0.5;
+}
+
+.empty-title {
+  font-size: var(--font-xl);
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-sm);
+}
+
+.empty-description {
+  font-size: var(--font-base);
+  color: var(--text-tertiary);
+  margin-bottom: var(--spacing-xl);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-card.featured {
+    grid-column: span 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard-header {
+    padding: var(--spacing-xl) var(--spacing-lg);
+  }
+
+  .dashboard-title {
+    font-size: var(--font-2xl);
+  }
+
+  .quick-stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-md);
+  }
+
+  .category-tabs {
+    flex-direction: column;
+  }
+
+  .response-options {
+    grid-template-columns: 1fr;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboard-header {
+    padding: var(--spacing-lg) var(--spacing-md);
+  }
+
+  .dashboard-card {
+    padding: var(--spacing-lg);
+  }
+
+  .stat-card {
+    padding: var(--spacing-md);
+  }
+
+  .stat-value {
+    font-size: var(--font-2xl);
+  }
+}
+
+
+/* Session Controls - Fix spacing issue */
+.session-controls {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md, 16px);  /* Add spacing between elements */
+}
+
+.session-indicator {
+  padding: var(--spacing-sm, 8px) var(--spacing-md, 16px);
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-md, 8px);
+  font-weight: 500;
+}
+
+.btn {
+  padding: var(--spacing-sm, 8px) var(--spacing-lg, 20px);
+  border: none;
+  border-radius: var(--radius-md, 8px);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-primary {
+  background-color: white;
+  color: var(--primary-color, #6B46C1);
+}
+
+.btn-primary:hover {
+  background-color: rgba(255, 255, 255, 0.9);
+  transform: translateY(-1px);
+}
+
+.btn-danger {
+  background-color: #EF4444;
+  color: white;
+}
+
+.btn-danger:hover {
+  background-color: #DC2626;
+  transform: translateY(-1px);
+}
+
+/* Main Layout for Dashboard */
+.dashboard-content {
+  display: flex;
+  gap: var(--spacing-xl, 24px);
+}
+
+.main-panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg, 20px);
+}
+
+.side-panel {
+  width: 350px;
+}
+
+.control-section {
+  display: flex;
+  gap: var(--spacing-lg, 20px);
+}
+
+/* Fix Emotion Dropdown Z-index */
+.emotion-dropdown {
+  position: absolute;
+  z-index: 1000 !important;  /* Ensure dropdown appears above other elements */
+  background-color: white;
+  border: 1px solid var(--border-color, #e5e7eb);
+  border-radius: var(--radius-md, 8px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-top: 4px;
+}
+
+/* Fix any MusicControls dropdown issues */
+.emotion-selector-mini {
+  position: relative;
+  z-index: 100;
+}
+
+.emotion-selector-mini .emotion-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  background-color: white;
+  border: 1px solid var(--border-color, #e5e7eb);
+  border-radius: var(--radius-md, 8px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  min-width: 200px;
+}
+
+.dashboard-full-width .dashboard-content-full {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg, 20px);
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--spacing-xl, 24px);
+}
+
+.dashboard-full-width .control-section {
+  display: flex;
+  gap: var(--spacing-lg, 20px);
+  width: 100%;
+  justify-content: center;
+}
+
+/* Remove the old dashboard-content styles when sidebar was present */
+.dashboard-full-width .dashboard-content {
+  display: none;
+}
+
+/* -----------------------------
+   Add these styles to App.css
+   ----------------------------- */
+
+/* AI Assistant View */
+.ai-view-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--spacing-xl, 24px);
+}
+
+.ai-header {
+  text-align: center;
+  margin-bottom: var(--spacing-xl, 24px);
+}
+
+.ai-header h2 {
+  font-size: 2rem;
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-md, 16px);
+}
+
+.ai-notice {
+  background-color: #FEF3C7;
+  border: 1px solid #F59E0B;
+  border-radius: var(--radius-md, 8px);
+  padding: var(--spacing-md, 16px);
+  margin: var(--spacing-lg, 20px) auto;
+  max-width: 600px;
+}
+
+.ai-notice p {
+  color: #92400E;
+  margin: 0;
+  font-weight: 500;
+}
+
+/* Make SuggestionPanel centered in AI view */
+.ai-view-container .suggestion-panel {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Session Controls Spacing Fix */
+.session-controls {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md, 16px);
+}
+
+.session-indicator {
+  padding: var(--spacing-sm, 8px) var(--spacing-md, 16px);
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-md, 8px);
+  font-weight: 500;
+}
+
+.btn {
+  padding: var(--spacing-sm, 8px) var(--spacing-lg, 20px);
+  border: none;
+  border-radius: var(--radius-md, 8px);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-primary {
+  background-color: white;
+  color: var(--primary-color, #6B46C1);
+}
+
+.btn-primary:hover {
+  background-color: rgba(255, 255, 255, 0.9);
+  transform: translateY(-1px);
+}
+
+.btn-danger {
+  background-color: #EF4444;
+  color: white;
+}
+
+.btn-danger:hover {
+  background-color: #DC2626;
+  transform: translateY(-1px);
+}
+
+/* Fix Emotion Dropdown Z-index */
+.emotion-dropdown {
+  position: absolute;
+  z-index: 1000 !important;
+  background-color: white;
+  border: 1px solid var(--border-color, #e5e7eb);
+  border-radius: var(--radius-md, 8px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-top: 4px;
+}
+
+.emotion-selector-mini {
+  position: relative;
+  z-index: 100;
+}
+
+.emotion-selector-mini .emotion-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  background-color: white;
+  border: 1px solid var(--border-color, #e5e7eb);
+  border-radius: var(--radius-md, 8px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  min-width: 200px;
+}
+
+.action-btn-mini {
+  white-space: nowrap;
+  min-width: fit-content;
+}
+
+/* Fix Select Mood dropdown cutoff */
+.emotion-dropdown {
+  position: absolute;
+  z-index: 9999 !important;
+  top: 100%;
+  left: 0;
+  margin-top: 4px;
+  min-width: 200px;
+  max-width: 300px;
+  background-color: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  overflow: visible;
+}
+
+/* Ensure dropdown container doesn't clip */
+.emotion-selector-mini {
+  position: relative;
+  z-index: 100;
+  overflow: visible !important;
+}
+
+.controls-mood {
+  overflow: visible !important;
+}
+
+/* Fix MusicControls layout to prevent cutoffs */
+.music-controls {
+  min-width: fit-content;
+  flex-shrink: 0;
+  overflow: visible !important;
+}
+
+.controls-main {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0 1rem;
+  overflow: visible !important;
+}
+
+/* Ensure adequate spacing */
+.controls-track-info {
+  min-width: 250px;
+  flex-shrink: 0;
+}
+
+.controls-playback {
+  min-width: fit-content;
+  flex-shrink: 0;
+}
+
+.controls-mood {
+  flex: 1;
+  min-width: 300px;
+  position: relative;
+  overflow: visible !important;
+}
+
+.controls-actions {
+  min-width: 250px;
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
+  flex-shrink: 0;
+}
