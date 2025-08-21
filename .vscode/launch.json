@@ -1,0 +1,92 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Python Debugger: Current File",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${file}",
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "Backend: FastAPI",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "uvicorn",
+      "args": [
+        "main:app",
+        "--reload",
+        "--port",
+        "8000"
+      ],
+      "cwd": "${workspaceFolder}/backend",
+      "console": "integratedTerminal",
+      "envFile": "${workspaceFolder}/backend/.env",
+      "env": {
+        "PYTHONPATH": "${workspaceFolder}/backend"
+      },
+      "python": "${command:python.interpreterPath}"
+    },
+    {
+      "name": "Frontend: Next.js (Server)",
+      "type": "node",
+      "request": "launch",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "start"
+      ],
+      "cwd": "${workspaceFolder}/frontend",
+      "console": "integratedTerminal",
+      "serverReadyAction": {
+        "pattern": "ready on",
+        "uriFormat": "http://localhost:3000",
+        "action": "openExternally"
+      }
+    },
+    {
+      "name": "Frontend: Next.js Chrome (Client)",
+      "type": "chrome",
+      "request": "launch",
+      "url": "http://localhost:3000",
+      "webRoot": "${workspaceFolder}/frontend",
+      "sourceMaps": true,
+      "sourceMapPathOverrides": {
+        "webpack:///./*": "${webRoot}/*"
+      }
+    },
+    {
+      "name": "Frontend: Next.js Full Stack Debug",
+      "type": "node",
+      "request": "launch",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["start"],
+      "cwd": "${workspaceFolder}/frontend",
+      "console": "integratedTerminal",
+      "serverReadyAction": {
+        "pattern": "ready on",
+        "uriFormat": "http://localhost:3000",
+        "action": "debugWithChrome",
+        "webRoot": "${workspaceFolder}/frontend"
+      }
+    }
+  ],
+  "compounds": [
+    {
+      "name": "Full Stack",
+      "configurations": [
+        "Backend: FastAPI",
+        "Frontend: Next.js (Server)"
+      ],
+      "stopAll": true
+    },
+    {
+      "name": "Full Stack with Client Debug",
+      "configurations": [
+        "Backend: FastAPI",
+        "Frontend: Next.js (Server)",
+        "Frontend: Next.js Chrome (Client)"
+      ],
+      "stopAll": true
+    }
+  ]
+}
